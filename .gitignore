@@ -1,0 +1,27 @@
+# Godot 4
+.godot/
+
+# Godot 3
+.import/
+
+# Exported projects
+*.apk
+*.aab
+*.ipa
+*.exe
+*.x86
+*.x86_64
+*.arm
+*.arm64
+*.pck
+*.zip
+
+# macOS
+*.app
+export.cfg
+export_presets.cfg
+
+# Mono/C#
+.mono/
+data_*/
+mono_crash.*.json

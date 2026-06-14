@@ -1,0 +1,31 @@
+[background arg="res://Imgs/1_pc_1.png" fade="0.0"]
+I have to finish the hat.
+Order
+Design
+Composition
+Tone
+Form
+Symmetry
+Balance
+- I know I can pull this off in a game.
+- I'm not sure if this will turn out well.
+...
+I just need to finish the hat.
+[wait_input]
+[background arg="res://Imgs/2_fan.png" fade="0.0"]
+It's hot in here.
+This year is much better, I even have a cieling fan.
+It's still really hot in here.
+Sometimes, voices come through this window.
+They don't distance nor die, I just don't hear them because I'm with my headphones.
+It's hot in here, so I have to keep my blind shut. You can't see the sky.
+It doesn't matter when you are planning a sky.
+- Look at the window
+	I'd rather plan your sky than look at the real one. Besides, the blind is shut.
+- Back to finishing the hat
+I have to finish the hat.
+[background arg="res://Imgs/3_campo.png" fade="0.0"]
+Time to relax.
+[background scene="res://addons/dialogic/my_default_background.tscn" arg="res://Imgs/3_campo.png" fade="0.0"]
+I hope I can see some bugs here.
+<Empty Text Event>
