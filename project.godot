@@ -21,7 +21,10 @@ Dialogic="*uid://ds2q0uclmolvu"
 
 [dialogic]
 
-directories/dch_directory={}
+directories/dch_directory={
+"arturo": "res://dialogic/arturo.dch",
+"korah": "res://dialogic/korah.dch"
+}
 directories/dtl_directory={
 "timeline": "res://tls/timeline.dtl"
 }

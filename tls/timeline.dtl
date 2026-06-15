@@ -1,31 +1,140 @@
-[background arg="res://Imgs/1_pc_1.png" fade="0.0"]
+[background arg="res://Imgs/inicio.png" fade="0.0"]
+[wait_input]
+Sunday? In Granada, Spain.
+[background arg="res://Imgs/1_pc_hat.png" fade="0.0"]
 I have to finish the hat.
+[background arg="res://Imgs/1_pc_1.png" fade="0.0"]
 Order
+[background arg="res://Imgs/1_pc_3.png" fade="0.0"]
 Design
+[background arg="res://Imgs/pc_sky.png" fade="0.0"]
 Composition
+[background arg="res://Imgs/1_pc_4.png" fade="0.0"]
 Tone
+[background arg="res://Imgs/1_pc_5.png" fade="0.0"]
 Form
+[background arg="res://Imgs/1_pc_2.png" fade="0.0"]
 Symmetry
+[background arg="res://Imgs/1_pc_hat.png" fade="0.0"]
 Balance
 - I know I can pull this off in a game.
 - I'm not sure if this will turn out well.
+[background arg="res://Imgs/1_pc_3.png" fade="0.0"]
 ...
 I just need to finish the hat.
-[wait_input]
-[background arg="res://Imgs/2_fan.png" fade="0.0"]
+[background arg="res://Imgs/2_fan.png" fade="0.5" transition="Push Right" wait="true"]
 It's hot in here.
-This year is much better, I even have a cieling fan.
+This year is much better, I even have a ceiling fan.
 It's still really hot in here.
 Sometimes, voices come through this window.
 They don't distance nor die, I just don't hear them because I'm with my headphones.
 It's hot in here, so I have to keep my blind shut. You can't see the sky.
+[background arg="res://Imgs/pc_sky.png" fade="0.0"]
 It doesn't matter when you are planning a sky.
+[background arg="res://Imgs/2_fan.png" fade="0.5" wait="true"]
 - Look at the window
-	I'd rather plan your sky than look at the real one. Besides, the blind is shut.
+	I'd rather plan my sky than look at the real one. Besides, the blind is shut.
 - Back to finishing the hat
+[background arg="res://Imgs/1_pc_hat.png" fade="0.0"]
 I have to finish the hat.
-[background arg="res://Imgs/3_campo.png" fade="0.0"]
+[background arg="#000000ff" fade="0.5" wait="true"]
+[background arg="res://Imgs/3_campo.png" fade="0.5" transition="Swipe Left To Right" wait="true"]
 Time to relax.
-[background scene="res://addons/dialogic/my_default_background.tscn" arg="res://Imgs/3_campo.png" fade="0.0"]
+[background scene="res://addons/dialogic/my_default_background.tscn" arg="res://Imgs/3_campo.png" fade="0.0" wait="true"]
 I hope I can see some bugs here.
-<Empty Text Event>
+[wait_input]
+This would look awesome in the game.
+[wait_input]
+If work is what I do for others and art is what I do for myself.
+¿What is this?
+- work
+- art
+I have to get back to the hat.
+[background arg="#000000ff" fade="0.5" wait="true"]
+Either Sunday or Wednesday.
+[background arg="res://Imgs/pc_sky.png" fade="0.5" wait="true"]
+It's beautiful to plan a sky.
+[background arg="res://Imgs/1_pc_3.png" fade="0.0"]
+And to enter the world of the hat.
+[background arg="res://Imgs/1_pc_hat.png" fade="0.0"]
+- The world is in the hat
+	And inside there is red and blue.
+- The world expands from the hat
+	To finish a hat is to plan a sky.
+[background arg="res://Imgs/2_fan.png" fade="0.0"]
+Reaching through the world of the hat, like a window
+[background arg="res://Imgs/1_pc_hat.png" fade="0.0"]
+Starting on a hat.
+[background arg="res://Imgs/1_pc_3.png" fade="0.0"]
+Finishing a hat.
+[background arg="#000000ff" fade="0.5" wait="true"]
+Sunday, probably.
+[background arg="res://Imgs/4_isaac.png" fade="0.5" wait="true"]
+Look at us looking.
+What do we see?
+- The hat
+	She is pretty
+- Her face
+	Your eyes, love, I love your eyes love.
+What does she see?
+- The hat
+	She has a sky to plan.
+- My eyes
+	It's hot in here.
+She has to finish her hat.
+Do you know how lucky I feel that she has a hat.
+I hope I don't have to make her wait much.
+I'll try to take a break.
+korah: How is the game going?
+- I'm slowly going crazy
+- I think it's going well but I don't know how people will like it
+arturo: Woof Woof
+[background arg="res://Imgs/4_isaac.png" fade="0.5" wait="true"]
+korah: If I could concentrate.
+- We'd still lose the run
+	arturo: We'd still lose the run. \:P
+- You'd rule the world
+	arturo: You'd rule the world or something.
+arturo: One more run and we make dinner?
+[background arg="#000000ff" fade="0.5" wait="true"]
+I think we belong together
+[background arg="res://Imgs/pc_steam.png" fade="0.5"]
+Okay, here we go.
+All this time, bit by bit I've put this together.
+Piece by piece, every little detail played a part.
+Having just the vision's no solution.
+Everything depends on execution.
+Putting it together.
+Art isn't easy.
+- Making art is easy
+- Making art isn't easy
+Financing art is not.
+The art of making art.
+I should spend more time on it instead of making games about making games.
+Anyway.
+label bit
+- Bit by bit
+	Part by part
+	jump bit
+- Publish game
+[background arg="res://Imgs/pc_steam_page.png" fade="0.0"]
+Look I made a hat.
+[background arg="#000000ff" fade="0.5" wait="true"]
+Sunday.
+[background arg="res://Imgs/5_paseo.png" fade="0.5" wait="true"]
+arturo: ...
+korah: Are you happy?
+- I want to make things that count
+- I want to make things that will be new
+korah: You will!
+arturo: Did you like the bubble tea?
+korah: Very much.
+korah: And now?
+- Move on
+- Move on
+arturo: I'm working on the next one.
+korah: Of course you are.
+[background arg="#000000ff" fade="0.8" wait="true"]
+A game made by 3DGoblinDev inspired by Sunday In The Park With George by Stephen Sondheim.
+Music by Alicia Pérez Marín.
+jump

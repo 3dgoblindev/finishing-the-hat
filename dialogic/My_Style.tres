@@ -34,6 +34,9 @@ scene = ExtResource("6_4aq4n")
 overrides = {
 "box_color_custom": "Color(0.08934021, 0.026855469, 0.3125, 1)",
 "box_color_use_global": "false",
+"box_size": "Vector2(600, 150)",
+"name_label_box_modulate": "Color(0.09019608, 0.02745098, 0.3137255, 1)",
+"name_label_box_use_global_color": "false",
 "next_indicator_enabled": "false",
 "normal_font": "\"res://PatrickHand-Regular.ttf\"",
 "text_custom_color": "Color(0, 0, 0, 1)",
@@ -51,7 +54,7 @@ scene = ExtResource("7_c85o3")
 script = ExtResource("2_38bqs")
 scene = ExtResource("8_4aq4n")
 overrides = {
-"boxes_offset": "Vector2(0, 150)",
+"boxes_offset": "Vector2(0, 100)",
 "boxes_stylebox_focused": "\"res://dialogic/my_choice_panel_focus.tres\"",
 "boxes_stylebox_hovered": "\"res://dialogic/new_style_box_texture_h.tres\"",
 "boxes_stylebox_normal": "\"res://dialogic/new_style_box_texture.tres\"",
@@ -90,4 +93,4 @@ layer_info = {
 "16": SubResource("Resource_uhtqq"),
 "17": SubResource("Resource_j1gnn")
 }
-metadata/_latest_layer = "15"
+metadata/_latest_layer = "13"
