@@ -1,0 +1,245 @@
+[gd_scene format=3 uid="uid://bwc61yyovhtvn"]
+
+[sub_resource type="GDScript" id="GDScript_lotac"]
+script/source = "extends Node
+
+# ─────────────────────────────────────────────
+#  CONFIGURACIÓN POR DEFECTO
+# ─────────────────────────────────────────────
+
+const DEFAULT_FADE_DURATION := 1.5   # segundos para fade de música/ambiente
+
+# Volúmenes máximos (0.0 a 1.0)
+var music_volume   := 1.0
+var ambient_volume := 1.0
+var sfx_volume     := 1.0
+var master_volume  := 1.0
+
+# ─────────────────────────────────────────────
+#  NODOS INTERNOS
+# ─────────────────────────────────────────────
+
+var _music_player_a:   AudioStreamPlayer
+var _music_player_b:   AudioStreamPlayer
+var _ambient_player_a: AudioStreamPlayer
+var _ambient_player_b: AudioStreamPlayer
+var _sfx_player:       AudioStreamPlayer # Reproductor único para SFX
+
+# Cuál player está activo (para crossfade)
+var _music_active:   String = \"a\"
+var _ambient_active: String = \"a\"
+
+# Tweens activos
+var _music_tween:   Tween
+var _ambient_tween: Tween
+
+# Tracks actuales (para evitar reiniciar el mismo)
+var _current_music_path:   String = \"\"
+var _current_ambient_path: String = \"\"
+
+# ─────────────────────────────────────────────
+#  INICIALIZACIÓN
+# ─────────────────────────────────────────────
+
+func _ready() -> void:
+	_setup_music_players()
+	_setup_ambient_players()
+	
+	# Inicializamos un único reproductor genérico para SFX
+	_sfx_player = _make_player(\"SFX_Player\", \"SFX\")
+	
+	_connect_dialogic_signals()
+
+func _setup_music_players() -> void:
+	_music_player_a = _make_player(\"MusicA\", \"Music\")
+	_music_player_b = _make_player(\"MusicB\", \"Music\")
+	_music_player_b.volume_db = linear_to_db(0.0)
+
+func _setup_ambient_players() -> void:
+	_ambient_player_a = _make_player(\"AmbientA\", \"Ambient\")
+	_ambient_player_b = _make_player(\"AmbientB\", \"Ambient\")
+	_ambient_player_b.volume_db = linear_to_db(0.0)
+
+func _make_player(node_name: String, bus: String) -> AudioStreamPlayer:
+	var p := AudioStreamPlayer.new()
+	p.name        = node_name
+	p.bus         = bus          # Asegúrate de tener los buses: Music, Ambient, SFX
+	p.autoplay    = false
+	add_child(p)
+	return p
+
+# ─────────────────────────────────────────────
+#  CONEXIÓN CON DIALOGIC
+# ─────────────────────────────────────────────
+
+func _connect_dialogic_signals() -> void:
+	if not has_node(\"/root/Dialogic\"): return
+	var dialogic = get_node(\"/root/Dialogic\")
+
+	if dialogic.has_signal(\"signal_event\"):
+		dialogic.signal_event.connect(_on_dialogic_signal)
+	if dialogic.has_signal(\"timeline_ended\"):
+		dialogic.timeline_ended.connect(_on_dialogic_timeline_ended)
+
+func _on_dialogic_signal(arg: String) -> void:
+	if not arg.begins_with(\"audio:\"): return
+	var parts := arg.split(\":\")
+	if parts.size() < 2: return
+
+	match parts[1]:
+		\"music\":
+			if parts.size() >= 3: play_music(parts[2])
+		\"ambient\":
+			if parts.size() >= 3: play_ambient(parts[2])
+		\"sfx\":
+			if parts.size() >= 3: play_sfx(parts[2])
+		\"stop_music\": stop_music()
+		\"stop_ambient\": stop_ambient()
+		\"stop_all\": stop_all()
+
+func _on_dialogic_timeline_ended() -> void:
+	pass
+
+# ─────────────────────────────────────────────
+#  MÚSICA — API PÚBLICA
+# ─────────────────────────────────────────────
+
+func play_music(path: String, fade: float = DEFAULT_FADE_DURATION, loop: bool = true) -> void:
+	if path == _current_music_path and _get_active_music_player().playing: return
+
+	_current_music_path = path
+	var stream := _load_stream(path)
+	if stream == null: return
+
+	if stream is AudioStreamOggVorbis or stream is AudioStreamMP3: stream.loop = loop
+
+	var incoming := _get_inactive_music_player()
+	incoming.stream = stream
+	incoming.volume_db = linear_to_db(0.0)
+	incoming.play()
+
+	_crossfade_music(fade)
+
+func stop_music(fade: float = DEFAULT_FADE_DURATION) -> void:
+	_current_music_path = \"\"
+	fade_out_music(fade)
+
+func fade_out_music(duration: float = DEFAULT_FADE_DURATION) -> void:
+	_kill_tween(_music_tween)
+	_music_tween = create_tween()
+	var active := _get_active_music_player()
+	_music_tween.tween_property(active, \"volume_db\", linear_to_db(0.0001), duration).set_trans(Tween.TRANS_SINE)
+	_music_tween.tween_callback(active.stop)
+
+# ─────────────────────────────────────────────
+#  AMBIENTE — API PÚBLICA
+# ─────────────────────────────────────────────
+
+func play_ambient(path: String, fade: float = DEFAULT_FADE_DURATION, loop: bool = true) -> void:
+	if path == _current_ambient_path and _get_active_ambient_player().playing: return
+
+	_current_ambient_path = path
+	var stream := _load_stream(path)
+	if stream == null: return
+
+	if stream is AudioStreamOggVorbis or stream is AudioStreamMP3: stream.loop = loop
+
+	var incoming := _get_inactive_ambient_player()
+	incoming.stream = stream
+	incoming.volume_db = linear_to_db(0.0)
+	incoming.play()
+
+	_crossfade_ambient(fade)
+
+func stop_ambient(fade: float = DEFAULT_FADE_DURATION) -> void:
+	_current_ambient_path = \"\"
+	fade_out_ambient(fade)
+
+func fade_out_ambient(duration: float = DEFAULT_FADE_DURATION) -> void:
+	_kill_tween(_ambient_tween)
+	_ambient_tween = create_tween()
+	var active := _get_active_ambient_player()
+	_ambient_tween.tween_property(active, \"volume_db\", linear_to_db(0.0001), duration).set_trans(Tween.TRANS_SINE)
+	_ambient_tween.tween_callback(active.stop)
+
+# ─────────────────────────────────────────────
+#  EFECTOS DE SONIDO (BÁSICO) — API PÚBLICA
+# ─────────────────────────────────────────────
+
+## Reproduce un efecto de sonido en el reproductor genérico.
+func play_sfx(path: String, volume_scale: float = 1.0, pitch_scale: float = 1.0) -> void:
+	var stream := _load_stream(path)
+	if stream == null: return
+
+	_sfx_player.stream      = stream
+	_sfx_player.volume_db   = linear_to_db(sfx_volume * master_volume * volume_scale)
+	_sfx_player.pitch_scale = pitch_scale
+	_sfx_player.play()
+
+func stop_sfx() -> void:
+	_sfx_player.stop()
+
+# ─────────────────────────────────────────────
+#  UTILIDADES INTERNAS
+# ─────────────────────────────────────────────
+
+func stop_all(fade: float = DEFAULT_FADE_DURATION) -> void:
+	stop_music(fade)
+	stop_ambient(fade)
+	stop_sfx()
+
+func _load_stream(path: String) -> AudioStream:
+	if path.is_empty() or not ResourceLoader.exists(path): return null
+	return load(path) as AudioStream
+
+func _get_active_music_player() -> AudioStreamPlayer:
+	return _music_player_a if _music_active == \"a\" else _music_player_b
+
+func _get_inactive_music_player() -> AudioStreamPlayer:
+	return _music_player_b if _music_active == \"a\" else _music_player_a
+
+func _get_active_ambient_player() -> AudioStreamPlayer:
+	return _ambient_player_a if _ambient_active == \"a\" else _ambient_player_b
+
+func _get_inactive_ambient_player() -> AudioStreamPlayer:
+	return _ambient_player_b if _ambient_active == \"a\" else _ambient_player_a
+
+func _crossfade_music(duration: float) -> void:
+	_kill_tween(_music_tween)
+	_music_tween = create_tween()
+	_music_tween.set_parallel(true)
+
+	var outgoing := _get_active_music_player()
+	var incoming := _get_inactive_music_player()
+	var target_db := linear_to_db(music_volume * master_volume)
+
+	if outgoing.playing:
+		_music_tween.tween_property(outgoing, \"volume_db\", linear_to_db(0.0001), duration).set_trans(Tween.TRANS_SINE)
+		_music_tween.tween_callback(outgoing.stop).set_delay(duration)
+
+	_music_tween.tween_property(incoming, \"volume_db\", target_db, duration).set_trans(Tween.TRANS_SINE).from(linear_to_db(0.0001))
+	_music_active = \"b\" if _music_active == \"a\" else \"a\"
+
+func _crossfade_ambient(duration: float) -> void:
+	_kill_tween(_ambient_tween)
+	_ambient_tween = create_tween()
+	_ambient_tween.set_parallel(true)
+
+	var outgoing := _get_active_ambient_player()
+	var incoming := _get_inactive_ambient_player()
+	var target_db := linear_to_db(ambient_volume * master_volume)
+
+	if outgoing.playing:
+		_ambient_tween.tween_property(outgoing, \"volume_db\", linear_to_db(0.0001), duration).set_trans(Tween.TRANS_SINE)
+		_ambient_tween.tween_callback(outgoing.stop).set_delay(duration)
+
+	_ambient_tween.tween_property(incoming, \"volume_db\", target_db, duration).set_trans(Tween.TRANS_SINE).from(linear_to_db(0.0001))
+	_ambient_active = \"b\" if _ambient_active == \"a\" else \"a\"
+
+func _kill_tween(tween: Tween) -> void:
+	if tween != null and tween.is_valid():
+		tween.kill()
+"
+
+[node name="AudioManager" type="Node2D" unique_id=333125786]
+script = SubResource("GDScript_lotac")

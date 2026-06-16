@@ -60,9 +60,15 @@ audio/channel_defaults={
 "loop": false,
 "volume": 0.0
 },
+"ambient": {
+"audio_bus": "",
+"fade_length": 0.5,
+"loop": true,
+"volume": 0.0
+},
 "music": {
 "audio_bus": "",
-"fade_length": 0.0,
+"fade_length": 0.5,
 "loop": true,
 "volume": 0.0
 }

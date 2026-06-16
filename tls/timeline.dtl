@@ -1,3 +1,4 @@
+audio ambient "res://audio/pc_ambient.ogg"
 [background arg="res://Imgs/inicio.png" fade="0.0"]
 [wait_input]
 Sunday? In Granada, Spain.
@@ -27,7 +28,7 @@ It's hot in here.
 This year is much better, I even have a ceiling fan.
 It's still really hot in here.
 Sometimes, voices come through this window.
-They don't distance nor die, I just don't hear them because I'm with my headphones.
+They don't distance nor die, I just don't hear them because I'm wearing my headphones.
 It's hot in here, so I have to keep my blind shut. You can't see the sky.
 [background arg="res://Imgs/pc_sky.png" fade="0.0"]
 It doesn't matter when you are planning a sky.
@@ -39,11 +40,20 @@ It doesn't matter when you are planning a sky.
 I have to finish the hat.
 [background arg="#000000ff" fade="0.5" wait="true"]
 [background arg="res://Imgs/3_campo.png" fade="0.5" transition="Swipe Left To Right" wait="true"]
+audio ambient "res://audio/forest_ambience.wav"
 Time to relax.
 [background scene="res://addons/dialogic/my_default_background.tscn" arg="res://Imgs/3_campo.png" fade="0.0" wait="true"]
 I hope I can see some bugs here.
 [wait_input]
 This would look awesome in the game.
+[wait_input]
+If I'm what I do, and I make games...
+- ¿What even is a game?
+	That question could make a great game. Several games even.
+- Then I'm an artist
+	Yup.
+[wait_input]
+I should bring home that rock.
 [wait_input]
 If work is what I do for others and art is what I do for myself.
 ¿What is this?
@@ -51,6 +61,7 @@ If work is what I do for others and art is what I do for myself.
 - art
 I have to get back to the hat.
 [background arg="#000000ff" fade="0.5" wait="true"]
+audio ambient "res://audio/pc_ambient.ogg"
 Either Sunday or Wednesday.
 [background arg="res://Imgs/pc_sky.png" fade="0.5" wait="true"]
 It's beautiful to plan a sky.
@@ -90,6 +101,7 @@ korah: How is the game going?
 - I think it's going well but I don't know how people will like it
 arturo: Woof Woof
 [background arg="res://Imgs/4_isaac.png" fade="0.5" wait="true"]
+audio ambient "res://audio/fan.ogg"
 korah: If I could concentrate.
 - We'd still lose the run
 	arturo: We'd still lose the run. \:P
@@ -97,6 +109,7 @@ korah: If I could concentrate.
 	arturo: You'd rule the world or something.
 arturo: One more run and we make dinner?
 [background arg="#000000ff" fade="0.5" wait="true"]
+audio ambient "res://audio/pc_ambient.ogg"
 I think we belong together
 [background arg="res://Imgs/pc_steam.png" fade="0.5"]
 Okay, here we go.
@@ -122,6 +135,7 @@ Look I made a hat.
 [background arg="#000000ff" fade="0.5" wait="true"]
 Sunday.
 [background arg="res://Imgs/5_paseo.png" fade="0.5" wait="true"]
+audio ambient "res://audio/Light-Traffic-Sound-Effects.ogg" [sync=""]
 arturo: ...
 korah: Are you happy?
 - I want to make things that count
@@ -135,6 +149,7 @@ korah: And now?
 arturo: I'm working on the next one.
 korah: Of course you are.
 [background arg="#000000ff" fade="0.8" wait="true"]
+audio ambient "res://audio/pc_ambient.ogg"
 A game made by 3DGoblinDev inspired by Sunday In The Park With George by Stephen Sondheim.
 Music by Alicia Pérez Marín.
 jump
