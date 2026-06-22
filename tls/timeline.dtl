@@ -1,4 +1,5 @@
 audio ambient "res://audio/pc_ambient.ogg"
+audio music "res://audio/intro.ogg"
 [background arg="res://Imgs/inicio.png" fade="0.0"]
 [wait_input]
 Sunday? In Granada, Spain.
@@ -23,6 +24,7 @@ Balance
 [background arg="res://Imgs/1_pc_3.png" fade="0.0"]
 ...
 I just need to finish the hat.
+audio music "res://audio/principal.ogg"
 [background arg="res://Imgs/2_fan.png" fade="0.5" transition="Push Right" wait="true"]
 It's hot in here.
 This year is much better, I even have a ceiling fan.
@@ -40,7 +42,7 @@ It doesn't matter when you are planning a sky.
 I have to finish the hat.
 [background arg="#000000ff" fade="0.5" wait="true"]
 [background arg="res://Imgs/3_campo.png" fade="0.5" transition="Swipe Left To Right" wait="true"]
-audio ambient "res://audio/forest_ambience.wav"
+audio ambient "res://audio/forest_ambience.wav" [volume="-6.0"]
 Time to relax.
 [background scene="res://addons/dialogic/my_default_background.tscn" arg="res://Imgs/3_campo.png" fade="0.0" wait="true"]
 I hope I can see some bugs here.
@@ -81,6 +83,7 @@ Finishing a hat.
 [background arg="#000000ff" fade="0.5" wait="true"]
 Sunday, probably.
 [background arg="res://Imgs/4_isaac.png" fade="0.5" wait="true"]
+audio ambient "res://audio/fan.ogg"
 Look at us looking.
 What do we see?
 - The hat
@@ -100,8 +103,6 @@ korah: How is the game going?
 - I'm slowly going crazy
 - I think it's going well but I don't know how people will like it
 arturo: Woof Woof
-[background arg="res://Imgs/4_isaac.png" fade="0.5" wait="true"]
-audio ambient "res://audio/fan.ogg"
 korah: If I could concentrate.
 - We'd still lose the run
 	arturo: We'd still lose the run. \:P
@@ -112,6 +113,7 @@ arturo: One more run and we make dinner?
 audio ambient "res://audio/pc_ambient.ogg"
 I think we belong together
 [background arg="res://Imgs/pc_steam.png" fade="0.5"]
+audio music "res://audio/principal.ogg" [volume="4.0"]
 Okay, here we go.
 All this time, bit by bit I've put this together.
 Piece by piece, every little detail played a part.
@@ -136,6 +138,7 @@ Look I made a hat.
 Sunday.
 [background arg="res://Imgs/5_paseo.png" fade="0.5" wait="true"]
 audio ambient "res://audio/Light-Traffic-Sound-Effects.ogg" [sync=""]
+audio music "res://audio/goblin kora.ogg" [volume="-5.0"]
 arturo: ...
 korah: Are you happy?
 - I want to make things that count

@@ -15,6 +15,10 @@ run/main_scene="uid://cryndwxqci16n"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://bgvky3yil3u6k"
+
 [autoload]
 
 Dialogic="*uid://ds2q0uclmolvu"
@@ -55,19 +59,19 @@ save/encryption_on_exports_only=true
 text/autopauses={}
 audio/channel_defaults={
 "": {
-"audio_bus": "",
+"audio_bus": "SFX",
 "fade_length": 0.0,
 "loop": false,
 "volume": 0.0
 },
 "ambient": {
-"audio_bus": "",
+"audio_bus": "Ambience",
 "fade_length": 0.5,
 "loop": true,
 "volume": 0.0
 },
 "music": {
-"audio_bus": "",
+"audio_bus": "Music",
 "fade_length": 0.5,
 "loop": true,
 "volume": 0.0

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://jo40n6vn3qli"
+path="res://.godot/imported/goblin kora.ogg-6ba3af1b747309b9afd6fd47537e3d1f.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/goblin kora.ogg"
+dest_files=["res://.godot/imported/goblin kora.ogg-6ba3af1b747309b9afd6fd47537e3d1f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
