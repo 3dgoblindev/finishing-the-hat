@@ -24,7 +24,7 @@ Balance
 [background arg="res://Imgs/1_pc_3.png" fade="0.0"]
 ...
 I just need to finish the hat.
-audio music "res://audio/principal.ogg"
+audio music "res://audio/principal.ogg" [volume="6.0"]
 [background arg="res://Imgs/2_fan.png" fade="0.5" transition="Push Right" wait="true"]
 It's hot in here.
 This year is much better, I even have a ceiling fan.
@@ -113,7 +113,7 @@ arturo: One more run and we make dinner?
 audio ambient "res://audio/pc_ambient.ogg"
 I think we belong together
 [background arg="res://Imgs/pc_steam.png" fade="0.5"]
-audio music "res://audio/principal.ogg" [volume="4.0"]
+audio music "res://audio/principal.ogg" [volume="6.0"]
 Okay, here we go.
 All this time, bit by bit I've put this together.
 Piece by piece, every little detail played a part.
@@ -138,7 +138,7 @@ Look I made a hat.
 Sunday.
 [background arg="res://Imgs/5_paseo.png" fade="0.5" wait="true"]
 audio ambient "res://audio/Light-Traffic-Sound-Effects.ogg" [sync=""]
-audio music "res://audio/goblin kora.ogg" [volume="-5.0"]
+audio music "res://audio/goblin kora.ogg" [volume="-15.0"]
 arturo: ...
 korah: Are you happy?
 - I want to make things that count
